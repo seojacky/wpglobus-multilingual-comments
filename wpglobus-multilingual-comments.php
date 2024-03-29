@@ -5,8 +5,8 @@
  * Version: 1.0
  * Author: @big_jacky 
  * Author URI: https://t.me/big_jacky
- * Plugin URI: https://github.com/seojacky/multilingual-comments-wpglobus
- * GitHub Plugin URI: https://github.com/seojacky/multilingual-comments-wpglobus
+ * Plugin URI: https://github.com/seojacky/wpglobus-multilingual-comments
+ * GitHub Plugin URI: https://github.com/seojacky/wpglobus-multilingual-comments
  * Domain Path: /languages
 */
 
