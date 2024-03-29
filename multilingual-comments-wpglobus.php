@@ -1,10 +1,17 @@
 <?php
 /*
-Plugin Name: Multilingual Comments WPGlobus
-Description: Unofficial Plugin for Multilingual Comments WPGlobus.
-Version: 1.0
-Author: seojacky
+ * Plugin Name: Multilingual Comments WPGlobus
+ * Description: Multilingual Comments WPGlobus - an unofficial plugin for creating multilingual comments using the WPGlobus plugin.
+ * Version: 1.0
+ * Author: @big_jacky 
+ * Author URI: https://t.me/big_jacky
+ * Plugin URI: https://github.com/seojacky/multilingual-comments-wpglobus
+ * GitHub Plugin URI: https://github.com/seojacky/multilingual-comments-wpglobus
+ * Domain Path: /languages
 */
+
+/* Exit if accessed directly */
+if ( ! defined( 'ABSPATH' ) ) {	return;}
 
 // Функция для фильтрации комментариев на основе языка текущего поста
 function comment_language_filter_comments_by_post_language($comments) {
