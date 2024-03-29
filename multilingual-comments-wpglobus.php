@@ -1,7 +1,7 @@
 <?php
 /*
- * Plugin Name: Multilingual Comments WPGlobus
- * Description: Multilingual Comments WPGlobus - an unofficial plugin for creating multilingual comments using the WPGlobus plugin.
+ * Plugin Name: WPGlobus Multilingual Comments
+ * Description: WPGlobus Multilingual Comments - an unofficial plugin for creating multilingual comments using the WPGlobus plugin.
  * Version: 1.0
  * Author: @big_jacky 
  * Author URI: https://t.me/big_jacky
