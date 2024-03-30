@@ -8,7 +8,7 @@ Stable tag: 1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-WPGlobus Multilingual Comments  is a plugin designed to provide multilingual commenting on your WordPress site when using the popular WPGlobus plugin. This plugin allows visitors to leave comments in different languages, making interaction with your content more convenient and accessible to a wider audience.
+WPGlobus Multilingual Comments  is a plugin designed to provide multilingual commenting on your WordPress site when using the popular WPGlobus plugin.
 
 == Description ==
 WPGlobus Multilingual Comments  is a plugin designed to provide multilingual commenting on your WordPress site when using the popular WPGlobus plugin. This plugin allows visitors to leave comments in different languages, making interaction with your content more convenient and accessible to a wider audience.
