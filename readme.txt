@@ -17,6 +17,7 @@ WPGlobus Multilingual Comments  is a simple and effective solution for those loo
 == Changelog ==
 = 1.1 - 29.03.2024 =
 * Updated description
+* Checked WordPress Security Standards
 
 = 1.0 - 29.03.2024 =
 * Release
