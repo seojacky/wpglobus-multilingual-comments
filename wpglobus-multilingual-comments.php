@@ -2,23 +2,24 @@
 /*
  * Plugin Name: WPGlobus Multilingual Comments
  * Description: WPGlobus Multilingual Comments - an unofficial plugin for creating multilingual comments using the WPGlobus plugin.
- * Version: 1.0
+ * Version: 1.1
  * Author: @big_jacky 
  * Author URI: https://t.me/big_jacky
  * Plugin URI: https://github.com/seojacky/wpglobus-multilingual-comments
  * GitHub Plugin URI: https://github.com/seojacky/wpglobus-multilingual-comments
+ * Text Domain: wpglobus-multilingual-comments
  * Domain Path: /languages
 */
 
 /* Exit if accessed directly */
 if ( ! defined( 'ABSPATH' ) ) {	return;}
 
-// Функция для фильтрации комментариев на основе языка текущего поста
+// Function for filtering comments based on the language of the current post
 function comment_language_filter_comments_by_post_language($comments) {
-    // Получаем язык текущего поста
+    // Get the language of the current post
     $post_language = get_locale() === 'ru_RU' ? 'ru_RU' : 'en_US';
 
-    // Фильтруем комментарии по языку текущего поста
+    // Filter comments by the language of the current post
     $filtered_comments = array_filter($comments, function($comment) use ($post_language) {
         $comment_language = get_comment_meta($comment->comment_ID, 'comment_language', true);
         return $comment_language === $post_language;
@@ -30,14 +31,14 @@ function comment_language_filter_comments_by_post_language($comments) {
 // Переопределяем функцию, отвечающую за вывод комментариев
 add_filter('comments_array', 'comment_language_filter_comments_by_post_language', 10, 2);
 
-// Добавляем поле выбора языка в форму комментария
+// Override the function responsible for displaying comments
 add_filter('comment_form_default_fields', function($fields) {
     // Получаем текущий язык
     $current_language = get_locale();
 
-    // Добавляем поле выбора языка, если язык определен
+    // Add language selection field if language is defined
     if (!empty($current_language)) {
-        $fields['comment_language'] = '<p class="comment-form-language" style="display:none"><label for="comment_language">' . esc_html__('Language', 'generatepress') . '</label>' .
+        $fields['comment_language'] = '<p class="comment-form-language" style="display:none"><label for="comment_language">' . esc_html__('Language', 'wpglobus-multilingual-comments') . '</label>' .
             '<select id="comment_language" name="comment_language">' .
             '<option value="' . esc_attr($current_language) . '" selected>' . esc_html($current_language) . '</option>' .
             '</select></p>';
@@ -46,22 +47,18 @@ add_filter('comment_form_default_fields', function($fields) {
     return $fields;
 }, 20);
 
-// Сохраняем выбранный язык при отправке комментария
-add_action('comment_post', function($comment_id) {
-    if (isset($_POST['comment_language'])) {
-        $language = sanitize_text_field($_POST['comment_language']);
-        add_comment_meta($comment_id, 'comment_language', $language);
-    }
-});
+// Save the selected language when sending a comment
+// Add nonce field to the comment form
 
-// Добавляем столбец "Language" в административную панель комментариев
+
+// Add the "Language" column to the comments admin panel
 add_filter('manage_edit-comments_columns', 'comment_language_add_language_column');
 function comment_language_add_language_column($columns) {
-    $columns['language'] = __('Language', 'generatepress');
+    $columns['language'] = __('Language', 'wpglobus-multilingual-comments');
     return $columns;
 }
 
-// Выводим данные языка в столбце "Language"
+// Output the language data in the "Language" column
 add_action('manage_comments_custom_column', 'comment_language_display_language_column_data', 10, 2);
 function comment_language_display_language_column_data($column, $comment_id) {
     if ($column === 'language') {
@@ -70,20 +67,20 @@ function comment_language_display_language_column_data($column, $comment_id) {
         if ($language) {
             echo esc_html($language);
         } else {
-            echo __('Not assigned', 'generatepress');
+            echo esc_html(__('Not assigned', 'wpglobus-multilingual-comments'));
         }
     }
 }
 
-// Добавляем действия для массового редактирования комментариев
+// Add actions for mass editing of comments
 add_filter('bulk_actions-edit-comments', 'comment_language_add_language_bulk_actions');
 function comment_language_add_language_bulk_actions($actions) {
-    $actions['assign_en_US'] = __('Assign en_US', 'textdomain');
-    $actions['assign_ru_RU'] = __('Assign ru_RU', 'textdomain');
+    $actions['assign_en_US'] = __('Assign en_US', 'wpglobus-multilingual-comments');
+    $actions['assign_ru_RU'] = __('Assign ru_RU', 'wpglobus-multilingual-comments');
     return $actions;
 }
 
-// Обрабатываем действия для массового редактирования комментариев
+// Handling actions for bulk editing of comments
 add_filter('handle_bulk_actions-edit-comments', 'comment_language_handle_language_bulk_actions', 10, 3);
 function comment_language_handle_language_bulk_actions($redirect_to, $action, $comment_ids) {
     if ($action == 'assign_en_US' || $action == 'assign_ru_RU') {
