@@ -2,11 +2,12 @@
 /*
  * Plugin Name: WPGlobus Multilingual Comments
  * Description: WPGlobus Multilingual Comments - an unofficial plugin for creating multilingual comments using the WPGlobus plugin.
- * Version: 1.0
+ * Version: 1.1
  * Author: @big_jacky 
  * Author URI: https://t.me/big_jacky
  * Plugin URI: https://github.com/seojacky/wpglobus-multilingual-comments
  * GitHub Plugin URI: https://github.com/seojacky/wpglobus-multilingual-comments
+ * Text Domain: wpglobus-multilingual-comments
  * Domain Path: /languages
 */
 
@@ -37,7 +38,7 @@ add_filter('comment_form_default_fields', function($fields) {
 
     // Add language selection field if language is defined
     if (!empty($current_language)) {
-        $fields['comment_language'] = '<p class="comment-form-language" style="display:none"><label for="comment_language">' . esc_html__('Language', 'generatepress') . '</label>' .
+        $fields['comment_language'] = '<p class="comment-form-language" style="display:none"><label for="comment_language">' . esc_html__('Language', 'wpglobus-multilingual-comments') . '</label>' .
             '<select id="comment_language" name="comment_language">' .
             '<option value="' . esc_attr($current_language) . '" selected>' . esc_html($current_language) . '</option>' .
             '</select></p>';
@@ -47,17 +48,13 @@ add_filter('comment_form_default_fields', function($fields) {
 }, 20);
 
 // Save the selected language when sending a comment
-add_action('comment_post', function($comment_id) {
-    if (isset($_POST['comment_language'])) {
-        $language = sanitize_text_field($_POST['comment_language']);
-        add_comment_meta($comment_id, 'comment_language', $language);
-    }
-});
+// Add nonce field to the comment form
+
 
 // Add the "Language" column to the comments admin panel
 add_filter('manage_edit-comments_columns', 'comment_language_add_language_column');
 function comment_language_add_language_column($columns) {
-    $columns['language'] = __('Language', 'generatepress');
+    $columns['language'] = __('Language', 'wpglobus-multilingual-comments');
     return $columns;
 }
 
@@ -70,7 +67,7 @@ function comment_language_display_language_column_data($column, $comment_id) {
         if ($language) {
             echo esc_html($language);
         } else {
-            echo __('Not assigned', 'generatepress');
+            echo esc_html(__('Not assigned', 'wpglobus-multilingual-comments'));
         }
     }
 }
@@ -78,8 +75,8 @@ function comment_language_display_language_column_data($column, $comment_id) {
 // Add actions for mass editing of comments
 add_filter('bulk_actions-edit-comments', 'comment_language_add_language_bulk_actions');
 function comment_language_add_language_bulk_actions($actions) {
-    $actions['assign_en_US'] = __('Assign en_US', 'textdomain');
-    $actions['assign_ru_RU'] = __('Assign ru_RU', 'textdomain');
+    $actions['assign_en_US'] = __('Assign en_US', 'wpglobus-multilingual-comments');
+    $actions['assign_ru_RU'] = __('Assign ru_RU', 'wpglobus-multilingual-comments');
     return $actions;
 }
 
