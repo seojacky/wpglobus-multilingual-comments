@@ -13,8 +13,7 @@
  * Domain Path: /languages
 */
 
-/* Exit if accessed directly */
-if ( ! defined( 'ABSPATH' ) ) {	return;}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 // Function for filtering comments based on the language of the current post
 function comment_language_filter_comments_by_post_language($comments) {
