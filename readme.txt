@@ -5,8 +5,8 @@ Requires at least: 5.0
 Tested up to: 6.5
 Requires PHP: 7.4
 Stable tag: 1.2
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+License: GPL-3.0-or-later
+License URI: https://spdx.org/licenses/GPL-3.0-or-later.html
 
 WPGlobus Multilingual Comments  is a plugin designed to provide multilingual commenting on your WordPress site when using the popular WPGlobus plugin.
 
