@@ -7,6 +7,8 @@
  * Author URI: https://t.me/big_jacky
  * Plugin URI: https://github.com/seojacky/wpglobus-multilingual-comments
  * GitHub Plugin URI: https://github.com/seojacky/wpglobus-multilingual-comments
+ * License: GPL-3.0-or-later
+ * License URI: https://spdx.org/licenses/GPL-3.0-or-later.html
  * Text Domain: wpglobus-multilingual-comments
  * Domain Path: /languages
 */
