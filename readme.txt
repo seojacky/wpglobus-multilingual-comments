@@ -16,6 +16,10 @@ The plugin automatically filters comments based on the language of the current p
 WPGlobus Multilingual Comments  is a simple and effective solution for those looking to expand the multilingual capabilities of their WordPress site using the WPGlobus plugin.
 
 == Changelog ==
+= 1.2 - 29.04.2024 =
+* Checked WordPress Security Standards
+* Updated License
+
 = 1.1 - 29.03.2024 =
 * Updated description
 * Checked WordPress Security Standards
