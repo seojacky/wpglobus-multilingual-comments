@@ -8,7 +8,7 @@ Stable tag: 1.2
 License: GPL-3.0-or-later
 License URI: https://spdx.org/licenses/GPL-3.0-or-later.html
 
-Multilingual Comments for WPGlobus  is a plugin designed to provide multilingual commenting on your WordPress site when using the popular WPGlobus plugin.
+Empower multilingual commenting on WPGlobus-enabled WordPress sites seamlessly.
 
 == Description ==
 Multilingual Comments for WPGlobus  is a plugin designed to provide multilingual commenting on your WordPress site when using the popular WPGlobus plugin. This plugin allows visitors to leave comments in different languages, making interaction with your content more convenient and accessible to a wider audience.
