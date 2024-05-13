@@ -4,7 +4,7 @@ Tags: localization, multilanguage, multilingual, translate, WPGlobus
 Requires at least: 5.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.2
+Stable tag: 1.3
 License: GPL-3.0-or-later
 License URI: https://spdx.org/licenses/GPL-3.0-or-later.html
 
@@ -16,6 +16,9 @@ The plugin automatically filters comments based on the language of the current p
 Multilingual Comments for WPGlobus  is a simple and effective solution for those looking to expand the multilingual capabilities of their WordPress site using the WPGlobus plugin.
 
 == Changelog ==
+= 1.3 - 13.05.2024 =
+* Release on WordPress.org
+
 = 1.2 - 29.04.2024 =
 * Checked WordPress Security Standards
 * Updated License
