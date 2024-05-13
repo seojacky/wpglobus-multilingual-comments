@@ -6,7 +6,7 @@ Tested up to: 6.5
 Requires PHP: 7.4
 Stable tag: 1.3
 License: GPL-3.0-or-later
-License URI: https://spdx.org/licenses/GPL-3.0-or-later.html
+License URI: https://spdx.org/licenses/GPL-3.0-or-later.html 
 
 Empower multilingual commenting on WPGlobus-enabled WordPress sites seamlessly.
 
