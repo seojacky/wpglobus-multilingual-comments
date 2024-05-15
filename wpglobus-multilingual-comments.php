@@ -3,7 +3,7 @@
  * Plugin Name: Multilingual Comments for WPGlobus
  * Description: Multilingual Comments for WPGlobus - an unofficial plugin for creating multilingual comments using the WPGlobus plugin.
  * Version: 1.3
- * Author: @big_jacky 
+ * Author: seojacky 
  * Author URI: https://t.me/big_jacky
  * Plugin URI: https://github.com/seojacky/wpglobus-multilingual-comments
  * GitHub Plugin URI: https://github.com/seojacky/wpglobus-multilingual-comments
