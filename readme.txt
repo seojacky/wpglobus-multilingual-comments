@@ -29,6 +29,14 @@ You can install this plugin directly from your WordPress dashboard:
 1. Click *Install Now* next to the *Multilingual Comments for WPGlobus* plugin.
 1. Activate the plugin.
 
+== Frequently Asked Questions ==
+
+= What languages does this WordPress plugin support? =
+Unfortunately, it currently supports multilingual comments only for English and Russian.
+
+= How to extend language support in this plugin? =
+Contact this [plugin's support](https://wordpress.org/support/plugin/wpglobus-multilingual-comments/).
+
 == Changelog ==
 = 1.4 - 15.05.2024 =
 * Changed Description
