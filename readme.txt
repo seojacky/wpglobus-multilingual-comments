@@ -4,7 +4,7 @@ Tags: localization, multilanguage, multilingual, translate, WPGlobus
 Requires at least: 5.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPL-3.0-or-later
 License URI: https://spdx.org/licenses/GPL-3.0-or-later.html 
 
@@ -31,13 +31,28 @@ You can install this plugin directly from your WordPress dashboard:
 
 == Frequently Asked Questions ==
 
-= What languages does this WordPress plugin support? =
-Unfortunately, it currently supports multilingual comments only for English and Russian.
+= What does the Multilingual Comments for WPGlobus plugin do?
+The Multilingual Comments for WPGlobus plugin allows you to create multilingual comments using the WPGlobus plugin. It filters comments based on the language of the current post, adds a language selection field to the comment form, and allows bulk editing of comment languages in the admin panel.
 
-= How to extend language support in this plugin? =
-Contact this [plugin's support](https://wordpress.org/support/plugin/wpglobus-multilingual-comments/).
+= How do I add a language to a comment?
+When a user leaves a comment, the plugin automatically adds a hidden field with the current post's language. This language is saved with the comment.
+
+= How do I filter comments by language?
+The plugin automatically filters comments based on the current post's language. You will only see comments that match the post's language.
+
+= How do I bulk change the language of comments?
+In the WordPress admin panel, go to the "Comments" section. Select the comments you want to edit, and in the bulk actions menu, choose the desired language (e.g., "Assign en" or "Assign ru"). The plugin will automatically change the language of the selected comments.
+
+= Does the plugin support other multilingual plugins?
+The Multilingual Comments for WPGlobus plugin is designed only to work with WPGlobus. 
+
 
 == Changelog ==
+= 1.5 - 06.06.2024 =
+* Changed Description
+* Expanded language support
+* Checked WordPress Security Standards
+
 = 1.4 - 15.05.2024 =
 * Changed Description
 
