@@ -4,7 +4,7 @@ Tags: localization, multilanguage, multilingual, translate, WPGlobus
 Requires at least: 5.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.5
+Stable tag: 1.5.1
 License: GPL-3.0-or-later
 License URI: https://spdx.org/licenses/GPL-3.0-or-later.html 
 
