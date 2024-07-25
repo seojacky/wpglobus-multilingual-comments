@@ -48,6 +48,9 @@ The Multilingual Comments for WPGlobus plugin is designed only to work with WPGl
 
 
 == Changelog ==
+= 1.5.1 - 25.07.2024 =
+* Added: Compatibility with WordPress 6.6
+
 = 1.5 - 06.06.2024 =
 * Changed Description
 * Expanded language support
