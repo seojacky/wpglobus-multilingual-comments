@@ -48,6 +48,11 @@ The Multilingual Comments for WPGlobus plugin is designed only to work with WPGl
 
 
 == Changelog ==
+= 1.5.4 - 14.07.2025 =
+* Fixed: Language auto-assignment for admin reply comments
+* Added: Language inheritance from parent comments
+* Improved: Admin panel comment language handling
+
 = 1.5.3 - 14.07.2025 =
 * Added: Compatibility with WordPress 6.8
 * Added: Support for WPGlobus flags in the "Language" column of comments admin panel
