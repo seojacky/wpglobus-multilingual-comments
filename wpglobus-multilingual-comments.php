@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Multilingual Comments for WPGlobus
  * Description: Multilingual Comments for WPGlobus - an unofficial plugin for creating multilingual comments using the WPGlobus plugin.
- * Version: 1.5.3
+ * Version: 1.5.4
  * Author: seojacky 
  * Author URI: https://t.me/big_jacky
  * Plugin URI: https://github.com/seojacky/wpglobus-multilingual-comments
@@ -53,16 +53,120 @@ function comment_language_add_language_field($fields) {
 }
 add_filter('comment_form_default_fields', 'comment_language_add_language_field', 20);
 
-// Save the selected language when sending a comment
+// Улучшенная функция для сохранения языка комментария
 function comment_language_save_comment_meta($comment_id) {
+    // Обработка для фронтенда (с nonce)
     if (isset($_POST['comment_language_nonce']) && wp_verify_nonce($_POST['comment_language_nonce'], 'save_comment_language')) {
         if (isset($_POST['comment_language'])) {
             $comment_language = sanitize_text_field($_POST['comment_language']);
             add_comment_meta($comment_id, 'comment_language', $comment_language, true);
+            return; // Выходим, чтобы не дублировать обработку
+        }
+    }
+    
+    // Обработка для админки (без nonce, но с проверкой прав)
+    if (is_admin() && current_user_can('moderate_comments')) {
+        $comment = get_comment($comment_id);
+        if ($comment) {
+            // Если язык уже установлен, не перезаписываем
+            $existing_language = get_comment_meta($comment_id, 'comment_language', true);
+            if (!empty($existing_language)) {
+                return;
+            }
+            
+            // Проверяем, есть ли родительский комментарий
+            if ($comment->comment_parent > 0) {
+                $parent_language = get_comment_meta($comment->comment_parent, 'comment_language', true);
+                if (!empty($parent_language)) {
+                    add_comment_meta($comment_id, 'comment_language', $parent_language, true);
+                    return;
+                }
+            }
+            
+            // Если нет родительского комментария или у него нет языка,
+            // берем язык поста или язык по умолчанию
+            if (class_exists('WPGlobus')) {
+                $post_id = $comment->comment_post_ID;
+                $post_language = get_post_meta($post_id, '_wpglobus_language', true);
+                
+                if (empty($post_language)) {
+                    $post_language = WPGlobus::Config()->default_language;
+                }
+                
+                if (!empty($post_language)) {
+                    add_comment_meta($comment_id, 'comment_language', $post_language, true);
+                }
+            }
         }
     }
 }
 add_action('comment_post', 'comment_language_save_comment_meta');
+
+// Функция для автоматического присвоения языка комментарию-ответу
+function comment_language_assign_to_reply($comment_id) {
+    $comment = get_comment($comment_id);
+    
+    // Проверяем, является ли это ответом на другой комментарий
+    if ($comment && $comment->comment_parent > 0) {
+        // Получаем язык родительского комментария
+        $parent_language = get_comment_meta($comment->comment_parent, 'comment_language', true);
+        
+        // Если у родительского комментария есть язык, присваиваем его дочернему
+        if (!empty($parent_language)) {
+            add_comment_meta($comment_id, 'comment_language', $parent_language, true);
+        } else {
+            // Если у родительского комментария нет языка, пытаемся получить язык поста
+            $post_id = $comment->comment_post_ID;
+            if ($post_id && class_exists('WPGlobus')) {
+                // Получаем язык поста через WPGlobus
+                $post_language = get_post_meta($post_id, '_wpglobus_language', true);
+                if (empty($post_language)) {
+                    // Если мета не найдена, используем текущий язык WPGlobus
+                    $post_language = WPGlobus::Config()->default_language;
+                }
+                
+                if (!empty($post_language)) {
+                    add_comment_meta($comment_id, 'comment_language', $post_language, true);
+                }
+            }
+        }
+    } else {
+        // Если это не ответ, но комментарий добавлен через админку
+        // и у него нет языка, пытаемся определить язык поста
+        $existing_language = get_comment_meta($comment_id, 'comment_language', true);
+        
+        if (empty($existing_language)) {
+            $post_id = $comment->comment_post_ID;
+            if ($post_id && class_exists('WPGlobus')) {
+                // Получаем язык поста
+                $post_language = get_post_meta($post_id, '_wpglobus_language', true);
+                if (empty($post_language)) {
+                    $post_language = WPGlobus::Config()->default_language;
+                }
+                
+                if (!empty($post_language)) {
+                    add_comment_meta($comment_id, 'comment_language', $post_language, true);
+                }
+            }
+        }
+    }
+}
+
+// Добавляем хук для обработки комментариев, созданных через админку
+add_action('comment_post', 'comment_language_assign_to_reply', 15); // Приоритет 15, чтобы выполнялось после основной функции
+
+// Альтернативный хук для комментариев, созданных/обновленных через админку
+add_action('edit_comment', 'comment_language_assign_to_reply', 10);
+
+// Дополнительно: обработка для wp_insert_comment (для полноты)
+function comment_language_handle_insert_comment($comment_id, $comment) {
+    // Проверяем, что это не дублирование обработки
+    $existing_language = get_comment_meta($comment_id, 'comment_language', true);
+    if (empty($existing_language)) {
+        comment_language_assign_to_reply($comment_id);
+    }
+}
+add_action('wp_insert_comment', 'comment_language_handle_insert_comment', 10, 2);
 
 // Add the "Language" column to the comments admin panel
 function comment_language_add_language_column($columns) {   
