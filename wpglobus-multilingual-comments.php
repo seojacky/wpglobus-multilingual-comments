@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Multilingual Comments for WPGlobus
  * Description: Multilingual Comments for WPGlobus - an unofficial plugin for creating multilingual comments using the WPGlobus plugin.
- * Version: 1.5.2
+ * Version: 1.5.3
  * Author: seojacky 
  * Author URI: https://t.me/big_jacky
  * Plugin URI: https://github.com/seojacky/wpglobus-multilingual-comments
@@ -65,19 +65,21 @@ function comment_language_save_comment_meta($comment_id) {
 add_action('comment_post', 'comment_language_save_comment_meta');
 
 // Add the "Language" column to the comments admin panel
-function comment_language_add_language_column($columns) {
-    $columns['language'] = __('Language', 'wpglobus-multilingual-comments');
+function comment_language_add_language_column($columns) {   
+	$columns['language'] = '<span class="dashicons dashicons-translation" title="'.__('Language', 'wpglobus-multilingual-comments').'"></span>';
     return $columns;
 }
 add_filter('manage_edit-comments_columns', 'comment_language_add_language_column');
 
-// Output the language data in the "Language" column
 function comment_language_display_language_column_data($column, $comment_id) {
     if ($column === 'language') {
         $language = get_comment_meta($comment_id, 'comment_language', true);
 
         if ($language) {
-            echo esc_html($language);
+            // Get the site URL and append the WPGlobus flags path
+            $flag_url = home_url('/wp-content/plugins/wpglobus/flags/' . strtolower($language) . '.png');
+            $output = $language . ' <img src="' . esc_url($flag_url) . '" alt="' . esc_attr($language) . ' flag" style="width: 18px; height: 12px; vertical-align: middle;" />';
+            echo wp_kses_post($output);
         } else {
             echo esc_html(__('Not assigned', 'wpglobus-multilingual-comments'));
         }
@@ -111,4 +113,3 @@ function comment_language_handle_language_bulk_actions($redirect_to, $action, $c
     return $redirect_to;
 }
 add_filter('handle_bulk_actions-edit-comments', 'comment_language_handle_language_bulk_actions', 10, 3);
-?>
