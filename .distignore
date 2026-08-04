@@ -11,3 +11,7 @@ Makefile
 package.json
 package-lock.json
 readme.md
+README.md
+CLAUDE.md
+ARCHITECTURE_MAP.md
+RELEASE.md
