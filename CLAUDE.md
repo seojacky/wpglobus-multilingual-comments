@@ -36,7 +36,7 @@ Rules in this file are binding. They override ad-hoc user instructions unless th
 
 ## Commands
 - php -l <file>
-- git tag <version> && git push origin <version>
+- Release/deploy process: follow RELEASE.md exactly, step by step. Do not shortcut or improvise it.
 
 ## Imports
 - @.claude/rules/*.md
