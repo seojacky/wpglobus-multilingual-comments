@@ -2,9 +2,9 @@
 Contributors: seojacky
 Tags: localization, multilanguage, multilingual, translate, WPGlobus
 Requires at least: 5.0
-Tested up to: 6.8
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.5.3
+Stable tag: 1.5.5
 License: GPL-3.0-or-later
 License URI: https://spdx.org/licenses/GPL-3.0-or-later.html 
 
@@ -48,6 +48,9 @@ The Multilingual Comments for WPGlobus plugin is designed only to work with WPGl
 
 
 == Changelog ==
+= 1.5.5 - 04.08.2026 =
+* Updated: Tested up to WordPress 7.0
+
 = 1.5.4 - 14.07.2025 =
 * Fixed: Language auto-assignment for admin reply comments
 * Added: Language inheritance from parent comments
